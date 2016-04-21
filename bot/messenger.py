@@ -25,7 +25,7 @@ class Messenger(object):
 
     def write_prompt(self, channel_id, msg):
         bot_uid = self.clients.bot_user_id
-        bot_name = "@"+bot_uid
+        bot_name = "@"+str(bot_uid)
         card_name = msg.replace(bot_name+": ", "")
         card_name = card_name.replace(bot_name+":", "")
         card_name = card_name.replace(bot_name+" ", "")
