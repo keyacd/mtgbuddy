@@ -22,19 +22,15 @@ class Messenger(object):
         txt = txt + "Just type my name and then a card name, and I'll use Gatherer to find the closest match!\n"
         txt = txt + "If you ever want to see this message again, type my name and then help?"
         self.send_message(channel_id, txt)
-    
-    def get_card_name(self, bot_uid, msg):
+
+    def write_prompt(self, channel_id, msg):
+        bot_uid = self.clients.bot_user_id
         bot_name = "@"+bot_uid
         card_name = msg.replace(bot_name+": ", "")
-        card_name = msg.replace(bot_name+":", "")
+        card_name = card_name.replace(bot_name+":", "")
         card_name = card_name.replace(bot_name+" ", "")
         card_name = card_name.replace(bot_name, "")
         card_name = card_name.replace("<>", "")
-        return card_name
-
-    def write_prompt(self, channel_id, msg):
-        bot_uid = self.clients.bot_user_id()
-        card_name = self.get_card_name(bot_uid, msg)
         if card_name == "" or card_name == " ":
             txt = card_name+"? I don't understand!\n"
             txt = txt + "I can't find a card if you don't give me a name!\n"
@@ -62,7 +58,7 @@ class Messenger(object):
                 "title": "View "+get_name+" on magiccards.info",
                 "title_link": card_url,
                 "text": get_name,
-                "fallback": card_name,
+                "fallback": img_url,
                 "image_url": img_url,
                 "color": "#7CD197",
             }
