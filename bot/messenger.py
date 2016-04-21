@@ -18,7 +18,7 @@ class Messenger(object):
 
     def write_help_message(self, channel_id):
         bot_uid = self.clients.bot_user_id()
-        txt = '{}\n{}\n{}\n{}'.format(
+        txt = '{}\n{}\n{}'.format(
             "Hi, I'm MTG Buddy! I can fetch Magic: the Gathering cards for you!",
             "Just type my name and then a card name, and I'll use Gatherer to find the closest match!",
             "If you ever want to see this message again, type my name and then help?")
@@ -29,7 +29,7 @@ class Messenger(object):
         card_name = msg.replace("@"+bot_uid+" ", "")
         card_name = card_name.replace("<>", "")
         if card_name == "":
-            txt = '{}\n{}\n{}\n{}'.format(
+            txt = '{}\n{}'.format(
                 "I can't find a card if you don't give me a name!",
                 "If you're confused, just type my name and then help?")
             self.send_message(channel_id, txt)
