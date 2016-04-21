@@ -43,4 +43,4 @@ class RtmEventHandler(object):
                 if 'help?' in msg_txt:
                     self.msg_writer.write_help_message(event['channel'])
                 else:
-                    self.msg_writer.write_prompt(event['channel'])
+                    self.msg_writer.write_prompt(event['channel'], msg_txt)
