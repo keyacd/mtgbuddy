@@ -1,5 +1,5 @@
 import logging
-import random
+import urllib2
 
 logger = logging.getLogger(__name__)
 
@@ -34,12 +34,15 @@ class Messenger(object):
         else:
             search = card_name.replace(" ","+")
             txt = "Searching for "+card_name+"..."
+            card_url = "http://magiccards.info/query?q="+card_name+"&v=card&s=cname"
+            response = urllib2.urlopen('http://python.org/')
+            html = response.read()
             get_name = "UNIMPLEMENTED"
             get_id = "376404"
             attachment = {
                 "pretext": "Found "+get_name+"!",
                 "title": "Gatherer info for "+get_name+":",
-                "title_link": "http://magiccards.info/query?q="+card_name+"&v=card&s=cname",
+                "title_link": card_url,
                 "text": get_name,
                 "fallback": card_name,
                 "image_url": "http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid="+get_id+"&type=card",
