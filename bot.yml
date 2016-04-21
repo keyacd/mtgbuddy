@@ -1,5 +1,5 @@
 name: MTG Buddy
-description: A simple Python bot sample for Beep Boop
+description: Magic the Gathering card fetcher
 avatar: resources/mtgbot.png
 background: resources/background.png
 config:
