@@ -49,7 +49,7 @@ class Messenger(object):
         img_url = img_url[1]
         img_url = img_url.split("alt")
         img_url = img_url[0]
-        img_url = img_url.replace(' " ', "")
+        img_url = img_url.replace(' \" ', "")
         return img_url
 
     def write_prompt(self, channel_id, msg):
