@@ -27,15 +27,7 @@ class Messenger(object):
     def write_prompt(self, channel_id, msg):
         bot_uid = self.clients.bot_user_id()
         card_name = msg.replace("@"+bot_uid, "")
-        txt = "I'm sorry, I didn't quite understand... Can I help you? (e.g. `<@" + bot_uid + "> help`) "+msg+" "+card_name
-        self.send_message(channel_id, txt)
-
-    def write_error(self, channel_id, err_msg):
-        txt = ":face_with_head_bandage: my maker didn't handle this error very well:\n>```{}```".format(err_msg)
-        self.send_message(channel_id, txt)
-
-    def demo_attachment(self, channel_id):
-        txt = "Beep Beep Boop is a ridiculously simple hosting platform for your Slackbots."
+        txt = "Fetching "+card_name+":"
         attachment = {
             "pretext": "We bring bots to life. :sunglasses: :thumbsup:",
             "title": "Host, deploy and share your bot in seconds.",
@@ -46,3 +38,7 @@ class Messenger(object):
             "color": "#7CD197",
         }
         self.clients.web.chat.post_message(channel_id, txt, attachments=[attachment], as_user='true')
+
+    def write_error(self, channel_id, err_msg):
+        txt = ":face_with_head_bandage: my maker didn't handle this error very well:\n>```{}```".format(err_msg)
+        self.send_message(channel_id, txt)
