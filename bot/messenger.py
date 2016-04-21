@@ -26,7 +26,8 @@ class Messenger(object):
 
     def write_prompt(self, channel_id, msg):
         bot_uid = self.clients.bot_user_id()
-        txt = "I'm sorry, I didn't quite understand... Can I help you? (e.g. `<@" + bot_uid + "> help`) msg"
+        card_name = msg.replace("@"+bot_uid, "")
+        txt = "I'm sorry, I didn't quite understand... Can I help you? (e.g. `<@" + bot_uid + "> help`) "+msg+" "+card_name
         self.send_message(channel_id, txt)
 
     def write_error(self, channel_id, err_msg):
