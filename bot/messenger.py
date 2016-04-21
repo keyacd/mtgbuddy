@@ -23,8 +23,8 @@ class Messenger(object):
         txt = txt + "If you ever want to see this message again, type my name and then help?"
         self.send_message(channel_id, txt)
     
-    def get_card_name(self, msg):
-        bot_name = "@"+bot_uid
+    def get_card_name(self, bot_name, msg):
+        bot_name = "@"+bot_name
         card_name = msg.replace(bot_name+": ", "")
         card_name = msg.replace(bot_name+":", "")
         card_name = card_name.replace(bot_name+" ", "")
@@ -54,7 +54,7 @@ class Messenger(object):
 
     def write_prompt(self, channel_id, msg):
         bot_uid = self.clients.bot_user_id()
-        card_name = self.get_card_name(msg)
+        card_name = self.get_card_name(bot_uid, msg)
         if card_name == "" or card_name == " ":
             txt = card_name+"? I don't understand!\n"
             txt = txt + "I can't find a card if you don't give me a name!\n"
