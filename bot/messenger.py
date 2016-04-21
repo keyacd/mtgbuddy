@@ -36,7 +36,7 @@ class Messenger(object):
         else:
             search = card_name.replace(" ","+")
             txt = "Searching for "+card_name+"..."
-            card_url = "http://magiccards.info/query?q="+card_name+"&v=card&s=cname"
+            card_url = "http://www.magiccards.info/query?q="+card_name+"&v=card&s=cname"
             response = urllib2.urlopen(card_url)
             response2 = response.geturl()
             html = response.read()
