@@ -36,8 +36,8 @@ class Messenger(object):
             "pretext": "Found "+get_name+"!",
             "title": "Gatherer info for "+get_name+":",
             "title_link": "http://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid="+get_id,
-            "text": get_name,
-            "fallback": card_name,
+            "text": card_name,
+            "fallback": get_name,
             "image_url": "http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid="+get_id+"&type=card",
             "color": "#7CD197",
         }
