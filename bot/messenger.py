@@ -20,7 +20,7 @@ class Messenger(object):
         bot_uid = self.clients.bot_user_id()
         txt = '{}\n{}\n{}\n{}'.format(
             "Hi, I'm MTG Buddy! I can fetch Magic: the Gathering cards for you!",
-            "Just type my name and then a card name, and I'll use Gatherer to find the closest match!"
+            "Just type my name and then a card name, and I'll use Gatherer to find the closest match!",
             "If you ever want to see this message again, type my name and then 'help?'")
         self.send_message(channel_id, txt)
 
