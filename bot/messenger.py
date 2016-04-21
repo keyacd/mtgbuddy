@@ -21,7 +21,7 @@ class Messenger(object):
         txt = '{}\n{}\n{}\n{}'.format(
             "Hi, I'm MTG Buddy! I can fetch Magic: the Gathering cards for you!",
             "Just type my name and then a card name, and I'll use Gatherer to find the closest match!",
-            "If you ever want to see this message again, type my name and then 'help?'")
+            "If you ever want to see this message again, type my name and then help?")
         self.send_message(channel_id, txt)
 
     def write_prompt(self, channel_id, msg):
@@ -30,8 +30,8 @@ class Messenger(object):
         card_name = card_name.replace("<>", "")
         if card_name == "":
             txt = '{}\n{}\n{}\n{}'.format(
-            "I can't find a card if you don't give me a name!",
-            "If you're confused, just type my name and then 'help?'")
+                "I can't find a card if you don't give me a name!",
+                "If you're confused, just type my name and then help?")
             self.send_message(channel_id, txt)
         else:
             txt = "Searching for "+card_name+"..."
