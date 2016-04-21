@@ -42,6 +42,16 @@ class Messenger(object):
             get_name = get_name[0]
         return get_name
 
+    def get_image_url(self, html):
+        img_url = html.split("<td width="312" valign="top">")
+        img_url = img_url[1]
+        img_url = img_url.splig("<img src=")
+        img_url = img_url[1]
+        img_url = img_url.split("alt")
+        img_url = img_url[0]
+        img_url = img_url.replace(' " ', "")
+        return img_url
+
     def write_prompt(self, channel_id, msg):
         bot_uid = self.clients.bot_user_id()
         card_name = self.get_card_name(msg)
@@ -57,13 +67,16 @@ class Messenger(object):
             response = urllib2.urlopen(card_url)
             html = response.read()
             get_name = self.get_title(html)
+            if get_name == card_name:
+                #this means there's more than one result for that name
+            img_url = self.get_image_url(html)
             attachment = {
                 "pretext": "Found "+get_name+"!",
                 "title": "View "+get_name+" on magiccards.info",
                 "title_link": card_url,
                 "text": get_name,
                 "fallback": card_name,
-                "image_url": "http://magiccards.info/scans/en/hl/102.jpg",
+                "image_url": img_url,
                 "color": "#7CD197",
             }
             self.clients.web.chat.post_message(channel_id, txt, attachments=[attachment], as_user='true')
