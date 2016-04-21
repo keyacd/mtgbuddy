@@ -27,9 +27,11 @@ class Messenger(object):
         bot_uid = self.clients.bot_user_id()
         bot_name = "@"+bot_uid
         card_name = msg.replace(bot_name+": ", "")
+        card_name = msg.replace(bot_name+":", "")
         card_name = card_name.replace(bot_name+" ", "")
+        card_name = card_name.replace(bot_name, "")
         card_name = card_name.replace("<>", "")
-        if card_name == "" or card_name == " " or bot_name in card_name:
+        if card_name == "" or card_name == " ":
             txt = card_name+"? I don't understand!\n"
             txt = txt + "I can't find a card if you don't give me a name!\n"
             txt = txt + "If you're confused, just type my name and then help?"
