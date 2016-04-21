@@ -45,7 +45,7 @@ class Messenger(object):
     def get_image_url(self, html):
         img_url = html.split("<td width="312" valign="top">")
         img_url = img_url[1]
-        img_url = img_url.splig("<img src=")
+        img_url = img_url.split("<img src=")
         img_url = img_url[1]
         img_url = img_url.split("alt")
         img_url = img_url[0]
