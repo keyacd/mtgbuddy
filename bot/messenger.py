@@ -50,7 +50,7 @@ class Messenger(object):
                 "title_link": card_url,
                 "text": get_name,
                 "fallback": card_name,
-                "image_url": "http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid="+get_id+"&type=card",
+                "image_url": "http://magiccards.info/scans/en/hl/102.jpg",
                 "color": "#7CD197",
             }
             self.clients.web.chat.post_message(channel_id, txt, attachments=[attachment], as_user='true')
