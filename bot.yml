@@ -1,6 +1,6 @@
 name: MTG Buddy
 description: A simple Python bot sample for Beep Boop
-avatar: resources/avatar.png
+avatar: resources/mtgbot.png
 background: resources/background.png
 config:
   - name: LOG_LEVEL
