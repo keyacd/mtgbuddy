@@ -42,6 +42,7 @@ class Messenger(object):
             card_url = "http://www.magiccards.info/query?q="+search_name+"&v=card&s=cname"
             response = urllib2.urlopen(card_url)
             html = response.read()
+            html = html.decode('utf-8')
             html = html.split('<td width=\"312\" valign=\"top\">')
             logger.debug(html)
             html = html[1]
