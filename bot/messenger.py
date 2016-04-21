@@ -38,13 +38,12 @@ class Messenger(object):
             txt = "Searching for "+card_name+"..."
             card_url = "http://www.magiccards.info/query?q="+card_name+"&v=card&s=cname"
             response = urllib2.urlopen(card_url)
-            response2 = response.geturl()
             html = response.read()
             get_name = "UNIMPLEMENTED"
             get_id = "376404"
             attachment = {
                 "pretext": "Found "+get_name+"!",
-                "title": response2,
+                "title": html,#"View "+get_name+" on magiccards.info",
                 "title_link": card_url,
                 "text": get_name,
                 "fallback": card_name,
