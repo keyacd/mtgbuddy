@@ -45,6 +45,7 @@ class Messenger(object):
             html = html.split('<td width=\"312\" valign=\"top\">')
             html = html[1]
             html = html.split('alt=')
+            print(html)
             img_url = html[0]
             img_url = img_url.split('src=')
             img_url = img_url[1]
