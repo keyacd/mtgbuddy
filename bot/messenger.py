@@ -43,7 +43,7 @@ class Messenger(object):
             get_id = "376404"
             attachment = {
                 "pretext": "Found "+get_name+"!",
-                "title": "View "+get_name+" on magiccards.info",
+                "title": info.headers, #"View "+get_name+" on magiccards.info",
                 "title_link": card_url,
                 "text": get_name,
                 "fallback": card_name,
