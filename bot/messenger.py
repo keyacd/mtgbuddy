@@ -22,30 +22,41 @@ class Messenger(object):
         txt = txt + "Just type my name and then a card name, and I'll use Gatherer to find the closest match!\n"
         txt = txt + "If you ever want to see this message again, type my name and then help?"
         self.send_message(channel_id, txt)
-
-    def write_prompt(self, channel_id, msg):
-        bot_uid = self.clients.bot_user_id()
+    
+    def get_card_name(self, msg):
         bot_name = "@"+bot_uid
         card_name = msg.replace(bot_name+": ", "")
         card_name = msg.replace(bot_name+":", "")
         card_name = card_name.replace(bot_name+" ", "")
         card_name = card_name.replace(bot_name, "")
         card_name = card_name.replace("<>", "")
+        return card_name
+    
+    def get_title(self, html):
+        get_name = html.split("</title>")
+        get_name = get_name[0]
+        get_name = get_name.split("<title>")
+        get_name = get_name[1]
+        if "(" in get_name:
+            get_name.split("(")
+            get_name = get_name[0]
+        return get_name
+
+    def write_prompt(self, channel_id, msg):
+        bot_uid = self.clients.bot_user_id()
+        card_name = self.get_card_name(msg)
         if card_name == "" or card_name == " ":
             txt = card_name+"? I don't understand!\n"
             txt = txt + "I can't find a card if you don't give me a name!\n"
             txt = txt + "If you're confused, just type my name and then help?"
             self.send_message(channel_id, txt)
         else:
-            search = card_name.replace(" ","+")
+            search_name = card_name.replace(" ","+")
             txt = "Searching for "+card_name+"..."
-            card_url = "http://www.magiccards.info/query?q="+card_name+"&v=card&s=cname"
+            card_url = "http://www.magiccards.info/query?q="+search_name+"&v=card&s=cname"
             response = urllib2.urlopen(card_url)
             html = response.read()
-            get_name = html.split("</title>")
-            get_name = get_name[0]
-            get_name = get_name.split("<title>")
-            get_name = get_name[1]
+            get_name = self.get_title(html)
             attachment = {
                 "pretext": "Found "+get_name+"!",
                 "title": "View "+get_name+" on magiccards.info",
