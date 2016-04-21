@@ -43,7 +43,7 @@ class Messenger(object):
             response = urllib2.urlopen(card_url)
             html = response.read()
             html = html.split('<td width=\"312\" valign=\"top\">')
-            console.log(html)
+            logger.debug(html)
             html = html[1]
             html = html.split('alt=')
             img_url = html[0]
