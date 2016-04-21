@@ -41,8 +41,7 @@ class Messenger(object):
             txt = "Searching for "+card_name+"..."
             card_url = "http://www.magiccards.info/query?q="+card_name+"&v=card&s=cname"
             response = urllib2.urlopen(card_url)
-            html = response.read()
-            html = html.info()
+            html = response.info()
             get_name = "UNIMPLEMENTED"
             get_id = "376404"
             attachment = {
