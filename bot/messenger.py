@@ -23,34 +23,14 @@ class Messenger(object):
         txt = txt + "If you ever want to see this message again, type my name and then help?"
         self.send_message(channel_id, txt)
     
-    def get_card_name(self, bot_name, msg):
-        bot_name = "@"+bot_name
+    def get_card_name(self, bot_uid, msg):
+        bot_name = "@"+bot_uid
         card_name = msg.replace(bot_name+": ", "")
         card_name = msg.replace(bot_name+":", "")
         card_name = card_name.replace(bot_name+" ", "")
         card_name = card_name.replace(bot_name, "")
         card_name = card_name.replace("<>", "")
         return card_name
-    
-    def get_title(self, html):
-        get_name = html.split("</title>")
-        get_name = get_name[0]
-        get_name = get_name.split("<title>")
-        get_name = get_name[1]
-        if "(" in get_name:
-            get_name.split("(")
-            get_name = get_name[0]
-        return get_name
-
-    def get_image_url(self, html):
-        img_url = html.split("<td width="312" valign="top">")
-        img_url = img_url[1]
-        img_url = img_url.split("<img src=")
-        img_url = img_url[1]
-        img_url = img_url.split("alt")
-        img_url = img_url[0]
-        img_url = img_url.replace(' \" ', "")
-        return img_url
 
     def write_prompt(self, channel_id, msg):
         bot_uid = self.clients.bot_user_id()
@@ -61,15 +41,22 @@ class Messenger(object):
             txt = txt + "If you're confused, just type my name and then help?"
             self.send_message(channel_id, txt)
         else:
-            search_name = card_name.replace(" ","+")
+            search_name = card_name.replace(" ", "+")
             txt = "Searching for "+card_name+"..."
             card_url = "http://www.magiccards.info/query?q="+search_name+"&v=card&s=cname"
             response = urllib2.urlopen(card_url)
             html = response.read()
-            get_name = self.get_title(html)
-            if get_name == card_name:
-                #this means there's more than one result for that name
-            img_url = self.get_image_url(html)
+            html = html.split('<td width=\"312\" valign=\"top\">')
+            html = html[1]
+            html = html.split('alt=')
+            img_url = html[0]
+            img_url = img_url.split('src=')
+            img_url = img_url[1]
+            img_url = img_url.replace('\"', "")
+            get_name = html[1]
+            get_name = get_name.split(" width")
+            get_name = get_name[0]
+            get_name = get_name.replace('\"', "")
             attachment = {
                 "pretext": "Found "+get_name+"!",
                 "title": "View "+get_name+" on magiccards.info",
