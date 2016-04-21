@@ -25,9 +25,9 @@ class Messenger(object):
 
     def write_prompt(self, channel_id, msg):
         bot_uid = self.clients.bot_user_id()
-        card_name = msg.replace("@"+bot_uid+" ", "")
+        card_name = msg.replace("@"+bot_uid, "")
         card_name = card_name.replace("<>", "")
-        if card_name == "" or msg == "@mtgbuddy" or msg == "@mtgbuddy ":
+        if card_name == "" or card_name == " ":
             txt = "I can't find a card if you don't give me a name!\nIf you're confused, just type my name and then help?"
             self.send_message(channel_id, txt)
         else:
