@@ -18,20 +18,17 @@ class Messenger(object):
 
     def write_help_message(self, channel_id):
         bot_uid = self.clients.bot_user_id()
-        txt = '{}\n{}\n{}'.format(
-            "Hi, I'm MTG Buddy! I can fetch Magic: the Gathering cards for you!",
-            "Just type my name and then a card name, and I'll use Gatherer to find the closest match!",
-            "If you ever want to see this message again, type my name and then help?")
+        txt = "Hi, I'm MTG Buddy! I can fetch Magic: the Gathering cards for you!\n"
+        txt = txt + "Just type my name and then a card name, and I'll use Gatherer to find the closest match!\n"
+        txt = txt + "If you ever want to see this message again, type my name and then help?"
         self.send_message(channel_id, txt)
 
     def write_prompt(self, channel_id, msg):
         bot_uid = self.clients.bot_user_id()
         card_name = msg.replace("@"+bot_uid+" ", "")
         card_name = card_name.replace("<>", "")
-        if card_name == "":
-            txt = '{}\n{}'.format(
-                "I can't find a card if you don't give me a name!",
-                "If you're confused, just type my name and then help?")
+        if card_name == "" or msg == "@mtgbuddy" or msg == "@mtgbuddy ":
+            txt = "I can't find a card if you don't give me a name!\nIf you're confused, just type my name and then help?"
             self.send_message(channel_id, txt)
         else:
             txt = "Searching for "+card_name+"..."
