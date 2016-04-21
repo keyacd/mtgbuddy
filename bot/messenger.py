@@ -44,17 +44,18 @@ class Messenger(object):
             html = response.read()
             html = html.decode('utf-8')
             html = html.split('<td width=\"312\" valign=\"top\">')
-            logger.debug(html)
-            html = html[1]
-            html = html.split('alt=')
-            img_url = html[0]
-            img_url = img_url.split('src=')
-            img_url = img_url[1]
-            img_url = img_url.replace('\"', "")
-            get_name = html[1]
-            get_name = get_name.split(" width")
-            get_name = get_name[0]
-            get_name = get_name.replace('\"', "")
+            #html = html[1]
+            #html = html.split('alt=')
+            img_url = http://magiccards.info/scans/en/c13/198.jpg #temp
+            get_name = html
+            #img_url = html[0]
+            #img_url = img_url.split('src=')
+            #img_url = img_url[1]
+            #img_url = img_url.replace('\"', "")
+            #get_name = html[1]
+            #get_name = get_name.split(" width")
+            #get_name = get_name[0]
+            #get_name = get_name.replace('\"', "")
             attachment = {
                 "pretext": "Found "+get_name+"!",
                 "title": "View "+get_name+" on magiccards.info",
