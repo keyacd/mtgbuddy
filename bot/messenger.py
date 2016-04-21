@@ -27,14 +27,18 @@ class Messenger(object):
     def write_prompt(self, channel_id, msg):
         bot_uid = self.clients.bot_user_id()
         card_name = msg.replace("@"+bot_uid, "")
+        card_name = msg.replace("<>", "")
         txt = "Fetching "+card_name+":"
+        # do the stuff to get the following things
+        get_name = "UNIMPLEMENTED"
+        get_id = "376404"
         attachment = {
-            "pretext": "We bring bots to life. :sunglasses: :thumbsup:",
-            "title": "Host, deploy and share your bot in seconds.",
-            "title_link": "https://beepboophq.com/",
+            "pretext": "Found "+get_name+"!",
+            "title": "Gatherer info for "+get_name+":",
+            "title_link": "http://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid="+get_id,
             "text": txt,
             "fallback": txt,
-            "image_url": "https://storage.googleapis.com/beepboophq/_assets/bot-1.22f6fb.png",
+            "image_url": "http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid="+get_id+"&type=card",
             "color": "#7CD197",
         }
         self.clients.web.chat.post_message(channel_id, txt, attachments=[attachment], as_user='true')
