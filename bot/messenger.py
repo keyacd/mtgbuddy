@@ -28,7 +28,7 @@ class Messenger(object):
         bot_uid = self.clients.bot_user_id()
         card_name = msg.replace("@"+bot_uid, "")
         card_name = msg.replace("<>", "")
-        txt = "Fetching "+card_name+":"
+        txt = "Searching for "+card_name+"..."
         # do the stuff to get the following things
         get_name = "UNIMPLEMENTED"
         get_id = "376404"
@@ -36,8 +36,8 @@ class Messenger(object):
             "pretext": "Found "+get_name+"!",
             "title": "Gatherer info for "+get_name+":",
             "title_link": "http://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid="+get_id,
-            "text": txt,
-            "fallback": txt,
+            "text": get_name,
+            "fallback": card_name,
             "image_url": "http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid="+get_id+"&type=card",
             "color": "#7CD197",
         }
