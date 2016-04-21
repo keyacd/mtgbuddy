@@ -60,7 +60,7 @@ class Messenger(object):
                 "pretext": "Found "+get_name+"!",
                 "title": "View "+get_name+" on magiccards.info",
                 "title_link": card_url,
-                "text": img_url, #should be get_name, testing
+                "text": get_name
                 "fallback": card_name,
                 "image_url": img_url,
                 "color": "#7CD197",
