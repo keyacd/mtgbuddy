@@ -31,14 +31,14 @@ class Messenger(object):
             txt = "I can't find a card if you don't give me a name!\nIf you're confused, just type my name and then help?"
             self.send_message(channel_id, txt)
         else:
+            search = card_name.replace(" ","+")
             txt = "Searching for "+card_name+"..."
-            # do the stuff to get the following things
             get_name = "UNIMPLEMENTED"
             get_id = "376404"
             attachment = {
                 "pretext": "Found "+get_name+"!",
                 "title": "Gatherer info for "+get_name+":",
-                "title_link": "http://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid="+get_id,
+                "title_link": "http://magiccards.info/query?q="+card_name+"&v=card&s=cname",
                 "text": card_name,
                 "fallback": get_name,
                 "image_url": "http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid="+get_id+"&type=card",
