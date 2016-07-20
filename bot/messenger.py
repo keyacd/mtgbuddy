@@ -46,7 +46,7 @@ class Messenger(object):
             html = html.split('<td width=\"312\" valign=\"top\">')
             #html = html[1]
             #html = html.split('alt=')
-            img_url = "http://magiccards.info/scans/en/c13/198.jpg" #temp
+            #img_url = "http://magiccards.info/scans/en/c13/198.jpg" #temp
             get_name = html
             #img_url = html[0]
             #img_url = img_url.split('src=')
@@ -62,7 +62,7 @@ class Messenger(object):
                 "title_link": card_url,
                 "text": get_name
                 "fallback": card_name,
-                "image_url": img_url,
+                #"image_url": img_url,
                 "color": "#7CD197",
             }
             self.clients.web.chat.post_message(channel_id, txt, attachments=[attachment], as_user='true')
