@@ -17,8 +17,8 @@ class Messenger(object):
         channel.send_message("{}".format(msg.encode('ascii', 'ignore')))
 
     def write_help_message(self, channel_id):
-        txt = "Hi, I'm MTG Buddy! I can fetch Magic: the Gathering cards for you!\n"
-        txt = txt + "Just type my name and then a card name, and I'll use magiccards.info to find the closest match!\n"
+        txt = "Hi, I'm MTG Buddy! I can fetch Magic: the Gathering cards for you using magiccards.info!\n"
+        txt = txt + "Just type my name and then a card name (and/or any of the syntax listed at magiccards.info/syntax.html), and I'll find the closest match!\n"
         txt = txt + "If you ever want to see this message again, type my name and then help?"
         self.send_message(channel_id, txt)
 
