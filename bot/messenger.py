@@ -61,7 +61,7 @@ class Messenger(object):
                 "title": "View "+get_name+" on magiccards.info",
                 "title_link": card_url,
                 "text": get_name
-                "fallback": card_name,
+                #"fallback": card_name,
                 #"image_url": img_url,
                 "color": "#7CD197",
             }
