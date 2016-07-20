@@ -45,7 +45,8 @@ class Messenger(object):
             #html = html[1]
             #html = html.split('alt=')
             #img_url = "http://magiccards.info/scans/en/c13/198.jpg" #temp
-            get_name = html
+            #get_name = html
+            get_name = "bluh"
             #img_url = html[0]
             #img_url = img_url.split('src=')
             #img_url = img_url[1]
