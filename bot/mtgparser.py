@@ -5,12 +5,15 @@ import re  # this actually stands for regular expression
 from bs4 import BeautifulSoup
 
 # -----------------------------------------------------------
-def returnmtginfo(cardname):
+def returnmtginfo(cardname, debug):
+        cardname = cardname.replace(' ','+')
         try:
                 url = "http://magiccards.info/query?q=" + cardname + "&v=card&s=cname"
                 sock = urllib2.urlopen(url)
         except urllib2.HTTPError, e:
-                print "\n" + cardname + " needs to be deleted"
+                cardname.replace('+',' ')
+                print url
+                print "Error: '" + cardname + "' could not be found."
                 return ""
         else:
                 soup = BeautifulSoup(sock.read(), 'html.parser')
@@ -24,10 +27,15 @@ def returnmtginfo(cardname):
                 #        return icon_url
                 table = soup.find('table',attrs={'class':None,'border':'0','cellpadding':'0','cellspacing':'0','width':'100%','align':'center','style':'margin: 0 0 0.5em 0;'})
                 img_table = str(table).split('\n')
+                
                 if len(img_table) >= 3:
-                        img = img_table[3]
+                        img1 = img_table[3]
+                        img2 = img_table[4]
                 else:
-                        print "Error: " + cardname + " could not be found."
+                        cardname = cardname.replace('+',' ')
+                        if debug:
+                                print url
+                        print "Error: '" + cardname + "' could not be found."
                         return
                 
                 table = table.get_text().split('\n')
@@ -38,12 +46,20 @@ def returnmtginfo(cardname):
                                 table2.append(line)
 
                 #returnimgurl
-                img = img.split(' ')
-                imglink = ""
-                for i in range(0,len(img)):
-                        if img[i].startswith('src="'):
-                                imglink = img[i]
-                                break
+                if img2.startswith('<img alt='):
+                        img2 = img2.split(' ')
+                        imglink = ""
+                        for i in range(0,len(img2)):
+                                if img2[i].startswith('src="'):
+                                        imglink = img2[i]
+                                        break
+                else:
+                        img1 = img1.split(' ')
+                        imglink = ""
+                        for i in range(0,len(img1)):
+                                if img1[i].startswith('src="'):
+                                        imglink = img1[i]
+                                        break
                 
                 print imglink[5:-1]
                 print table2[0]
@@ -52,11 +68,13 @@ def returnmtginfo(cardname):
                 print "--------------------------------------"
                 return
 
+debug = True
 cflag = "0"
 while cflag != "1":
-        cflag = raw_input("Enter card query or 1 to exit: ",)
+        cflag = raw_input("\nEnter card query or 1 to exit: ",)
         if cflag != "1":
-                returnmtginfo(cflag)
+                returnmtginfo(cflag,debug)
+
 
 
 
