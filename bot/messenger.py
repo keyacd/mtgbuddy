@@ -24,11 +24,7 @@ class Messenger(object):
 
     def write_prompt(self, channel_id, msg):
         bot_name = "@mtgbuddy"
-        card_name = msg.replace(bot_name+": ", "")
-        card_name = card_name.replace(bot_name+":", "")
-        card_name = card_name.replace(bot_name+" ", "")
-        card_name = card_name.replace(bot_name, "")
-        card_name = card_name.replace("<>", "")
+        card_name = msg[:11]
         if card_name == "" or card_name == " ":
             txt = card_name+"? I don't understand!\n"
             txt = txt + "I can't find a card if you don't give me a name!\n"
