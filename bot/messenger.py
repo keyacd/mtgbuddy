@@ -23,8 +23,7 @@ class Messenger(object):
         self.send_message(channel_id, txt)
 
     def write_prompt(self, channel_id, msg):
-        bot_name = "@mtgbuddy"
-        card_name = msg[:11]
+        card_name = msg
         if card_name == "" or card_name == " ":
             txt = card_name+"? I don't understand!\n"
             txt = txt + "I can't find a card if you don't give me a name!\n"
