@@ -17,15 +17,13 @@ class Messenger(object):
         channel.send_message("{}".format(msg.encode('ascii', 'ignore')))
 
     def write_help_message(self, channel_id):
-        bot_uid = self.clients.bot_user_id()
-        txt = "Hi, I'm " + bot_uid + "! I can fetch Magic: the Gathering cards for you!\n"
+        txt = "Hi, I'm MTG Buddy! I can fetch Magic: the Gathering cards for you!\n"
         txt = txt + "Just type my name and then a card name, and I'll use magiccards.info to find the closest match!\n"
         txt = txt + "If you ever want to see this message again, type my name and then help?"
         self.send_message(channel_id, txt)
 
     def write_prompt(self, channel_id, msg):
-        bot_uid = self.clients.bot_user_id()
-        bot_name = "@"+str(bot_uid)
+        bot_name = "@mtgbuddy"
         card_name = msg.replace(bot_name+": ", "")
         card_name = card_name.replace(bot_name+":", "")
         card_name = card_name.replace(bot_name+" ", "")
