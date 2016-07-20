@@ -63,7 +63,7 @@ class Messenger(object):
                 "text": get_name
                 #"fallback": card_name,
                 #"image_url": img_url,
-                "color": "#7CD197",
+                #"color": "#7CD197",
             }
             self.clients.web.chat.post_message(channel_id, txt, attachments=[attachment], as_user='true')
 
