@@ -1,7 +1,7 @@
 #!/usr/bin/python
 
 import urllib2
-import re  # this actually stands for regular expression
+#import re  # this actually stands for regular expression
 from bs4 import BeautifulSoup
 
 # -----------------------------------------------------------
