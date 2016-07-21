@@ -45,7 +45,7 @@ class RtmEventHandler(object):
                 
                 if 'help' in msg_txt:
                     self.msg_writer.write_help_message(event['channel'],msg_txt)
-                else if msg_txt.startswith('card'):
+                elif msg_txt.startswith('card'):
                     #msg_txt[5:] only sends over the card name for the search
                     self.msg_writer.write_prompt(event['channel'], msg_txt[5:])
                 else:
