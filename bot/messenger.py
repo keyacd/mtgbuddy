@@ -16,10 +16,11 @@ class Messenger(object):
         channel = self.clients.rtm.server.channels.find(channel_id)
         channel.send_message("{}".format(msg.encode('ascii', 'ignore')))
 
-    def write_help_message(self, channel_id):
+    def write_help_message(self, channel_id,msg):
         txt = "Hi, I'm MTG Buddy! I can fetch Magic: the Gathering cards for you using magiccards.info!\n"
         txt = txt + "Just type my name and then a card name (and/or any of the syntax listed at magiccards.info/syntax.html), and I'll find the closest match!\n"
         txt = txt + "If you ever want to see this message again, type my name and then help?"
+        txt += "You typed in: " + msg
         self.send_message(channel_id, txt)
 
     def write_prompt(self, channel_id, msg):

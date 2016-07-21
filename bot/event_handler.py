@@ -38,7 +38,7 @@ class RtmEventHandler(object):
 
             if self.clients.is_bot_mention(msg_txt):
                 # e.g. user typed: "@pybot tell me a joke!"
-                if 'help?' in msg_txt:
-                    self.msg_writer.write_help_message(event['channel'])
+                if 'help' in msg_txt:
+                    self.msg_writer.write_help_message(event['channel'],msg_text)
                 else:
                     self.msg_writer.write_prompt(event['channel'], msg_txt)
